@@ -1,6 +1,5 @@
-// 列表类的实现
-// nodejs
-// create by xiongwei
+// List 类
+// Create by xiongwei
 
 function List() {
     this.listSize = 0;
@@ -22,6 +21,8 @@ function List() {
     this.moveTo = moveTo;
     this.getElement = getElement;
 }
+
+module.exports = List;
 
 // 添加元素
 function append( element) {
@@ -111,45 +112,4 @@ function moveTo( position) {
 
 function getElement() {
     return this.dataStore[ this.pos];
-}
-
-// 测试代码
-var names = new List();
-names.append( "Xiongwei");
-names.append( "SYT");
-names.append( "xiaoShen");
-console.log( names.toString());
-names.remove( "xiaoShen");
-console.log( names.toString());
-
-names.insert( "xiaoShen", "SYT");
-console.log( names.toString());
-//names.clear();
-console.log( names.toString());
-console.log( names.contains( "SYT"));
-console.log( names.contains( "xxx"));
-
-var names = new List();
-names.append( "xiongwei");
-names.append( "syt");
-names.append( "ps");
-names.append( "wx");
-names.append( "hx");
-console.log( names.toString());
-names.front();
-console.log( names.getElement());
-names.next();
-console.log( names.getElement());
-names.next();
-names.next();
-names.prev();
-console.log( names.getElement());
-
-//迭代器遍历
-console.log( "迭代器");
-for( names.front(); names.currPos() < 5; names.next()) {
-    console.log( names.getElement());
-}
-for( names.end(); names.currPos() >= 0; names.prev()) {
-    console.log( names.getElement());
 }
