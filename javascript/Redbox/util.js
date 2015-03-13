@@ -24,16 +24,29 @@ module.exports.displayList = function( list) {
             console.log( list.getElement());
         }
     }
+    console.log();
 }
 
 // 租凭函数
 // 检查影碟列表，可以租凭则删除该元素，同时加入客户列表
-module.exports.checkOut = function( name, movie, movieList, customerList) {
+module.exports.checkOut = function( name, movie, movieList, leasedList, customerList) {
     if( movieList.contains( movie)) {
         var c = new Customer( name, movie);
         customerList.append( c);
+        leasedList.append( movie);
         movieList.remove( movie);
     } else {
         console.log( movie + " is not available.");
+        console.log( "Leased List:\n");
+        module.exports.displayList( leasedList);
+    }
+}
+// 归还影碟
+module.exports.checkIn = function( movie, movieList, leasedList) {
+    if( leasedList.contains( movie)) {
+        leasedList.remove( movie);
+        movieList.append( movie);
+    } else {
+        console.log( movie + " is available.");
     }
 }
